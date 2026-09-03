@@ -21,9 +21,9 @@ export default function CheckoutPage() {
           try {
                     const response = await fetch('/api/wc/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ billing_address: address, shipping_address: address, payment_method: 'cod', payment_data: [], customer_note: '' }) });
                     const data = await response.json();
-                    if (!response.ok) throw new Error(data?.message || 'Checkout সম্পন্ন করা যায়নি।');
-                    setSuccess(true); setMessage('অর্ডার সফল হয়েছে। অর্ডার নম্বর: ' + (data.order_id || data.order_key || 'নিশ্চিত'));
-          } catch (error) { setMessage(error instanceof Error ? error.message : 'Checkout সম্পন্ন করা যায়নি।'); }
+                    if (!response.ok) throw new Error(data?.message || 'Checkout could not be completed.');
+                    setSuccess(true); setMessage('Order placed successfully. Order number: ' + (data.order_id || data.order_key || 'নিশ্চিত'));
+          } catch (error) { setMessage(error instanceof Error ? error.message : 'Checkout could not be completed.'); }
           finally { setBusy(false); }
   }
 
@@ -32,10 +32,10 @@ export default function CheckoutPage() {
           return e('label', { className: 'checkout-field', key: name }, e('span', null, label), e('input', { type, value: form[name], required: true, onChange }));
   }
 
-  const fields = [inputField('name', 'আপনার নাম'), inputField('email', 'ইমেইল', 'email'), inputField('phone', 'ফোন নম্বর', 'tel'), inputField('city', 'শহর')];
-      const addressField = e('label', { className: 'checkout-field full', key: 'address' }, e('span', null, 'সম্পূর্ণ ঠিকানা'), e('textarea', { value: form.address, required: true, rows: 4, onChange: (event: ChangeEvent<HTMLTextAreaElement>) => change('address', event.target.value) }));
-      const button = e('button', { className: 'dark-button', type: 'submit', disabled: busy }, busy ? 'অর্ডার পাঠানো হচ্ছে…' : 'COD অর্ডার নিশ্চিত করুন');
+  const fields = [inputField('name', 'Full name'), inputField('email', 'Email', 'email'), inputField('phone', 'Phone number', 'tel'), inputField('city', 'City')];
+      const addressField = e('label', { className: 'checkout-field full', key: 'address' }, e('span', null, 'Full address'), e('textarea', { value: form.address, required: true, rows: 4, onChange: (event: ChangeEvent<HTMLTextAreaElement>) => change('address', event.target.value) }));
+      const button = e('button', { className: 'dark-button', type: 'submit', disabled: busy }, busy ? 'Placing order…' : 'Confirm COD order');
       const feedback = message ? e('div', { className: success ? 'checkout-success' : 'checkout-error' }, message) : null;
       const formElement = e('form', { className: 'checkout-form', onSubmit: submit }, ...fields, addressField, button, feedback);
-      return e('div', null, e(Header), e('main', { className: 'container checkout-page' }, e('div', { className: 'breadcrumb' }, e(Link, { href: '/cart' }, 'হোম › কার্ট'), ' › Checkout'), e('h1', null, 'Checkout'), e('p', { className: 'checkout-note' }, 'Cash on Delivery (COD) — ডেলিভারির সময় পেমেন্ট করুন।'), formElement));
+      return e('div', null, e(Header), e('main', { className: 'container checkout-page' }, e('div', { className: 'breadcrumb' }, e(Link, { href: '/cart' }, 'Home › Cart'), ' › Checkout'), e('h1', null, 'Checkout'), e('p', { className: 'checkout-note' }, 'Cash on Delivery (COD) — Pay when your order arrives.'), formElement));
 }
