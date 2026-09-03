@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 const messages = [
   { kicker: 'SMART DEAL OF THE DAY', title: 'Everyday essentials, better prices', detail: 'Discover something new and add it to your cart.' },
   { kicker: 'ZUNAID MART PICKS', title: 'Home, fashion and tech in one place', detail: 'Cash on Delivery and fast delivery across Bangladesh.' },
-  { kicker: 'LIMITED-TIME SELECTION', title: 'Small prices, big convenience', detail: 'Explore today's picks before they are gone.' },
+  { kicker: 'LIMITED-TIME SELECTION', title: 'Small prices, big convenience', detail: "Explore today's picks before they are gone." },
 ];
 
 export default function StorefrontMotion({ productCount = 0 }: { productCount?: number }) {
   const [active, setActive] = useState(0);
   const [seconds, setSeconds] = useState(3 * 60 * 60 + 47 * 60 + 12);
-  const [notice, setNotice] = useState('Explore today's deals');
+  const [notice, setNotice] = useState("Explore today's deals");
   useEffect(() => {
     const rotation = window.setInterval(() => setActive((value) => (value + 1) % messages.length), 4200);
     const countdown = window.setInterval(() => setSeconds((value) => value > 0 ? value - 1 : 3 * 60 * 60 + 47 * 60 + 12), 1000);
