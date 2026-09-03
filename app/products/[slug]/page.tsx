@@ -6,7 +6,7 @@ import { formatBDT, getProduct, stripHtml } from '../../../lib/woo';
 
 function englishName(name: string) {
   const digits = '০১২৩৪৫৬৭৮৯';
-  return name.replace(/[০-৯]/g, (digit) => String(digits.indexOf(digit))).replace(/পিছ|পিস/g, 'pieces');
+  return name.replace(/[০-৯]/g, (digit) => String(digits.indexOf(digit))).replace(/পিছ|পিস/g, 'pieces').replace(/(\d+)\s*pieces/gi, '$1 pieces');
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
