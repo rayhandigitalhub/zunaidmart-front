@@ -23,6 +23,6 @@ export default function AddToCartButton({ productId, quantity = 1, compact = fal
                   window.setTimeout(() => setStatus('idle'), 2200);
           }
     }
-    const label = status === 'loading' ? 'যোগ হচ্ছে…' : status === 'success' ? 'কার্টে যোগ হয়েছে ✓' : status === 'error' ? 'আবার চেষ্টা করুন' : compact ? 'কার্টে যোগ করুন' : 'কার্টে যোগ করুন';
+    const label = status === 'loading' ? 'Adding…' : status === 'success' ? 'Added to cart ✓' : status === 'error' ? 'Try again' : compact ? 'Add to cart' : 'Add to cart';
     return createElement('button', { type: 'button', className: compact ? 'add-button compact' : 'dark-button add-button', onClick: addToCart, disabled: status === 'loading' }, label);
 }
