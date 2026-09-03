@@ -13,5 +13,5 @@ export default function CursorFX() {
     root.classList.add('cursor-enabled');
     return () => { window.removeEventListener('pointermove', move); root.classList.remove('cursor-enabled'); };
   }, []);
-  return <div className="cursor-glow" aria-hidden="true" />;
+  return <><div className="cursor-glow" aria-hidden="true" /><div className="cursor-ring" aria-hidden="true" /><div className="cursor-dot" aria-hidden="true" /></>;
 }
