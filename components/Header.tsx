@@ -1,26 +1,21 @@
+import { createElement as e } from 'react';
 import Link from 'next/link';
 
+const link = (href: string, text: string, className?: string) => e(Link, { href, className }, text);
+
 export default function Header() {
-    return (
-          <header className="site-header">
-                <div className="top-strip">
-                        <div className="container top-inner">
-                                  <span>বাংলাদেশজুড়ে সহজ অনলাইন শপিং</span>span>
-                                  <nav aria-label="সাহায্য লিংক"><Link href="/products">সব পণ্য</Link>Link><Link href="#delivery">ডেলিভারি তথ্য</Link>Link><Link href="#contact">যোগাযোগ</Link>Link></nav>nav>
-                        </div>div>
-                </div>div>
-                <div className="header-main container">
-                        <Link href="/" className="brand" aria-label="Zunaid Mart হোমপেজ">
-                                  <span className="brand-mark">Z</span>span><span><strong>ZUNAID</strong>strong><small>MART</small>small></span>span>
-                        </Link>Link>
-                        <form className="search-form" action="/products">
-                                  <input name="q" placeholder="আপনি কী খুঁজছেন?" aria-label="পণ্য খুঁজুন" />
-                                  <button type="submit" aria-label="সার্চ">⌕</button>button>
-                        </form>form>
-                        <div className="header-actions"><Link href="/products" className="action-link">♡<span>উইশলিস্ট</span>span></Link>Link><Link href="#cart" className="action-link">🛒<span>কার্ট</span>span></Link>Link></div>div>
-                </div>div>
-                <div className="category-nav"><div className="container category-inner"><Link href="/products" className="category-all">☰ সব ক্যাটাগরি</Link>Link><Link href="/products?q=নতুন">নতুন পণ্য</Link>Link><Link href="/products?q=অফার">আজকের অফার</Link>Link><Link href="/products?q=ঘর">ঘর ও জীবন</Link>Link><Link href="/products?q=ফ্যাশন">ফ্যাশন</Link>Link><Link href="/products?q=ইলেকট্রনিক্স">ইলেকট্রনিক্স</Link>Link><span className="delivery-note">🚚 দ্রুত ডেলিভারি · COD available</span>span></div>div></div>div>
-          </header>header>
-        );
+      return e('header', { className: 'site-header' },
+                   e('div', { className: 'top-strip' }, e('div', { className: 'container top-inner' },
+                                                                e('span', null, 'বাংলাদেশজুড়ে সহজ অনলাইন শপিং'),
+                                                                e('nav', { 'aria-label': 'সাহায্য লিংক' }, link('/products', 'সব পণ্য'), link('#delivery', 'ডেলিভারি তথ্য'), link('#contact', 'যোগাযোগ'))
+                                                              )),
+                   e('div', { className: 'header-main container' },
+                           e(Link, { href: '/', className: 'brand', 'aria-label': 'Zunaid Mart হোমপেজ' }, e('span', { className: 'brand-mark' }, 'Z'), e('span', null, e('strong', null, 'ZUNAID'), e('small', null, 'MART'))),
+                           e('form', { className: 'search-form', action: '/products' }, e('input', { name: 'q', placeholder: 'আপনি কী খুঁজছেন?', 'aria-label': 'পণ্য খুঁজুন' }), e('button', { type: 'submit', 'aria-label': 'সার্চ' }, '⌕')),
+                           e('div', { className: 'header-actions' }, link('/products', '♡ উইশলিস্ট', 'action-link'), link('#cart', '🛒 কার্ট', 'action-link'))
+                         ),
+                   e('div', { className: 'category-nav' }, e('div', { className: 'container category-inner' },
+                                                                   link('/products', '☰ সব ক্যাটাগরি', 'category-all'), link('/products?q=নতুন', 'নতুন পণ্য'), link('/products?q=অফার', 'আজকের অফার'), link('/products?q=ঘর', 'ঘর ও জীবন'), link('/products?q=ফ্যাশন', 'ফ্যাশন'), link('/products?q=ইলেকট্রনিক্স', 'ইলেকট্রনিক্স'), e('span', { className: 'delivery-note' }, '🚚 দ্রুত ডেলিভারি · COD available')
+                                                                 ))
+                 );
 }
-</header>
