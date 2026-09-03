@@ -12,10 +12,10 @@ export default function ProductCard({ product }: { product: WooProduct }) {
           const imageLink = createElement(Link, { href: '/products/' + product.id + '-' + product.slug, className: 'product-image-wrap' }, discount > 0 ? [createElement('span', { key: 'discount', className: 'discount-badge' }, '-' + discount + '%'), imageContent] : imageContent);
           const body = createElement('div', { className: 'product-body' },
                                          createElement('h3', null, product.name),
-                                         createElement('div', { className: 'rating' }, '★ ', product.average_rating && Number(product.average_rating) > 0 ? Number(product.average_rating).toFixed(1) : 'নতুন', product.review_count ? ' (' + product.review_count + ')' : ''),
+                                         createElement('div', { className: 'rating' }, '★ ', product.average_rating && Number(product.average_rating) > 0 ? Number(product.average_rating).toFixed(1) : 'New', product.review_count ? ' (' + product.review_count + ')' : ''),
                                          createElement('div', { className: 'price-row' }, createElement('strong', null, formatBDT(sale)), discount > 0 ? createElement('del', null, formatBDT(regular)) : null),
                                          createElement(AddToCartButton, { productId: product.id, compact: true }),
-                                         createElement(Link, { href: '/products/' + product.id + '-' + product.slug, className: 'view-button' }, 'বিস্তারিত দেখুন')
+                                         createElement(Link, { href: '/products/' + product.id + '-' + product.slug, className: 'view-button' }, 'View details')
                                        );
           return createElement('article', { className: 'product-card' }, imageLink, body);
 }
