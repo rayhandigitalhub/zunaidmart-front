@@ -1,1 +1,14 @@
-আজকেরস্মার্টডিলপ্রতিদিনেরপছন্দআজইঘরেদরকারিপণ্যসহজদাম—একক্লিকেইঅর্ডারকরুন।আজকেরসিলেকশনঘরওজীবনেরপছন্দছোটদামেবড়সুবিধাআপনাররুটিনকেআরওসহজকরতেবেছেনেওয়াপ্রয়োজনীয়পণ্য।ঢাকাওসারাদেশেসীমিতসময়েরঅফারআজইনিনসাশ্রয়করুনপছন্দেরপণ্যকার্টেরাখুন—স্টকশেষহওয়ারআগেই।দ্রুতডেলিভারিএখনইশপকরুন→·নতুনকিছুআবিষ্কারকরুন
+'use client';
+
+import Link from 'next/link';
+
+export default function LiveHero() {
+  return (
+    <section className="legacy-live-hero" aria-label="Zunaid Mart offer">
+      <p className="eyebrow orange">ZUNAID MART PICKS</p>
+      <h2>আজকের স্মার্ট ডিল</h2>
+      <p>দরকারি পণ্য, সহজ দামে—এখনই দেখে নিন।</p>
+      <Link href="/products" className="dark-button">সব অফার দেখুন →</Link>
+    </section>
+  );
+}
