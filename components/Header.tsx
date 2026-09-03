@@ -11,6 +11,6 @@ export default function Header() {
       e(Link, { href: '/', className: 'brand', 'aria-label': 'Zunaid Mart homepage' }, e('span', { className: 'brand-mark' }, 'Z'), e('span', null, e('strong', null, 'ZUNAID'), e('small', null, 'MART'))),
       e('form', { className: 'search-form', action: '/products' }, e('input', { name: 'q', placeholder: 'What are you looking for?', 'aria-label': 'Search products' }), e('button', { type: 'submit', 'aria-label': 'Search' }, '⌕')),
       e('div', { className: 'header-actions' }, link('/products', '♡ Wishlist', 'action-link'), link('/cart', '🛒 Cart', 'action-link'))),
-    e('div', { className: 'category-nav' }, e('div', { className: 'container category-inner' }, link('/products', '☰ Categories', 'category-all'), link('/products?q=new', 'New Arrivals'), link('/products?q=deal', 'Today's Deals'), link('/products?q=home', 'Home & Living'), link('/products?q=fashion', 'Fashion'), link('/products?q=electronics', 'Electronics'), e('span', { className: 'delivery-note' }, '🚚 Fast delivery · Cash on Delivery')))
+    e('div', { className: 'category-nav' }, e('div', { className: 'container category-inner' }, link('/products', '☰ Categories', 'category-all'), link('/products?q=new', 'New Arrivals'), link('/products?q=deal', "Today's Deals"), link('/products?q=home', 'Home & Living'), link('/products?q=fashion', 'Fashion'), link('/products?q=electronics', 'Electronics'), e('span', { className: 'delivery-note' }, '🚚 Fast delivery · Cash on Delivery')))
   );
 }
