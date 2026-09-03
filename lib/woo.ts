@@ -46,7 +46,7 @@ export async function getProduct(identifier: string) {
 }
 
 export function formatBDT(value?: string) {
-    if (!value) return 'দাম জানতে যোগাযোগ করুন';
+    if (!value) return 'Contact us for price';
     return `৳ ${Number(value).toLocaleString('en-BD')}`;
 }
 
