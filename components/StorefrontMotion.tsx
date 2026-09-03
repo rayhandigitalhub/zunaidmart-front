@@ -23,10 +23,10 @@ export default function StorefrontMotion({ productCount = 0 }: { productCount?: 
   const second = String(seconds % 60).padStart(2, '0');
   const current = messages[active];
   return <>
-    <div className="live-offer-bar" role="status"><span className="live-dot">●</span><strong>LIVE OFFER</strong><span>{current.kicker} — {current.detail}</span><span className="offer-clock">Ends in {hour}:{minute}:{second}</span><Link href="/products">Shop now →</Link></div>
+    <div className="live-offer-bar" role="status"><span className="live-dot">●</span><strong>LIVE OFFER</strong><span>{current.kicker} — {current.detail}</span><span className="offer-clock">Ends in {hour}:{minute}:{second}</span><span className="live-scan"><i /> LIVE MODE</span><Link href="/products">Shop now →</Link></div>
     <div className="shop-shortcuts container" aria-label="Quick categories">
       <Link href="/products?q=new"><span>✦</span> New arrivals</Link><Link href="/products?q=deal"><span>%</span> Today's deals</Link><Link href="/products?q=home"><span>⌂</span> Home & Living</Link><Link href="/products?q=fashion"><span>◌</span> Fashion</Link><Link href="/products?q=electronics"><span>⌁</span> Electronics</Link><span className="catalog-pulse"><i /> {productCount || 'Many'} products live now</span>
     </div>
-    <section className="motion-banner container" aria-live="polite"><div><p className="eyebrow orange">{current.kicker}</p><h2>{current.title}</h2><p>{current.detail}</p></div><div className="motion-dots">{messages.map((_, index) => <button key={index} aria-label={'Slide ' + (index + 1)} className={index === active ? 'active' : ''} onClick={() => setActive(index)} />)}</div><button className="motion-notice" onClick={() => setNotice('Preview the product before adding it ✓')}>{notice}</button></section>
+    <section className="motion-banner container" aria-live="polite"><div className="motion-copy"><p className="eyebrow orange">{current.kicker}</p><h2>{current.title}</h2><p>{current.detail}</p></div><div className="motion-side"><div className="motion-energy" aria-hidden="true"><i /><i /><i /><i /><i /></div><span className="source-note">Source catalog · zunaidmart.com</span><div className="motion-dots">{messages.map((_, index) => <button key={index} aria-label={'Slide ' + (index + 1)} className={index === active ? 'active' : ''} onClick={() => setActive(index)} />)}</div></div><button className="motion-notice" onClick={() => setNotice('Preview the product before adding it ✓')}>{notice}</button></section>
   </>;
 }
