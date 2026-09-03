@@ -22,7 +22,7 @@ export default function CheckoutPage() {
                     const response = await fetch('/api/wc/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ billing_address: address, shipping_address: address, payment_method: 'cod', payment_data: [], customer_note: '' }) });
                     const data = await response.json();
                     if (!response.ok) throw new Error(data?.message || 'Checkout could not be completed.');
-                    setSuccess(true); setMessage('Order placed successfully. Order number: ' + (data.order_id || data.order_key || 'নিশ্চিত'));
+                    setSuccess(true); setMessage('Order placed successfully. Order number: ' + (data.order_id || data.order_key || 'confirmed'));
           } catch (error) { setMessage(error instanceof Error ? error.message : 'Checkout could not be completed.'); }
           finally { setBusy(false); }
   }
