@@ -21,7 +21,7 @@ export default function CartPage() {
                         if (!response.ok) throw new Error('cart');
                         setCart(await response.json());
                         setError('');
-            } catch { setError('কার্ট লোড করা যায়নি।'); }
+            } catch { setError('Cart could not be loaded.'); }
             finally { setBusy(false); }
   }
 
@@ -38,9 +38,9 @@ export default function CartPage() {
             return () => window.removeEventListener('zunaid-cart-updated', handler);
   }, []);
 
-  if (busy) return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('div', { className: 'empty-state' }, 'কার্ট লোড হচ্ছে…')));
+  if (busy) return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('div', { className: 'empty-state' }, 'Loading cart…')));
         if (error) return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('div', { className: 'empty-state' }, error)));
-        if (!cart?.items?.length) return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('h1', null, 'আপনার শপিং কার্ট'), e('div', { className: 'empty-state' }, e('h2', null, 'আপনার কার্ট খালি'), e('p', null, 'পছন্দের পণ্য কার্টে যোগ করুন।'), e(Link, { href: '/products', className: 'dark-button' }, 'শপিং শুরু করুন'))));
+        if (!cart?.items?.length) return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('h1', null, 'Your shopping cart'), e('div', { className: 'empty-state' }, e('h2', null, 'Your cart is empty'), e('p', null, 'Add products you love to your cart.'), e(Link, { href: '/products', className: 'dark-button' }, 'Start shopping'))));
 
   const itemElements = cart.items.map(item => {
             const image = item.images?.[0]?.src ? e('img', { src: item.images[0].src, alt: item.name }) : e('div', { className: 'image-placeholder' }, 'ZUNAID');
@@ -48,7 +48,7 @@ export default function CartPage() {
             return e('article', { className: 'cart-item', key: item.key }, image, e('div', { className: 'cart-item-copy' }, e('h2', null, item.name), e('p', null, money(item.prices?.price)), controls), e('strong', { className: 'cart-line-total' }, money(item.totals?.line_total)));
   });
         const itemsSection = e('section', { className: 'cart-items' }, itemElements);
-        const summary = e('aside', { className: 'cart-summary' }, e('p', { className: 'eyebrow orange' }, 'ORDER SUMMARY'), e('h2', null, 'মোট: ' + money(cart.totals?.total_price)), e('p', null, 'ডেলিভারি চার্জ checkout-এ ঠিকানা অনুযায়ী গণনা হবে।'), e(Link, { href: '/checkout', className: 'dark-button' }, 'Checkout-এ যান'));
+        const summary = e('aside', { className: 'cart-summary' }, e('p', { className: 'eyebrow orange' }, 'ORDER SUMMARY'), e('h2', null, 'Total: ' + money(cart.totals?.total_price)), e('p', null, 'Delivery fee is calculated at checkout based on your address.'), e(Link, { href: '/checkout', className: 'dark-button' }, 'Go to checkout'));
         const layout = e('div', { className: 'cart-layout' }, itemsSection, summary);
-        return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('div', { className: 'breadcrumb' }, 'হোম › কার্ট'), e('h1', null, 'আপনার শপিং কার্ট'), layout));
+        return e('div', null, e(Header), e('main', { className: 'container cart-page' }, e('div', { className: 'breadcrumb' }, 'Home › Cart'), e('h1', null, 'Your shopping cart'), layout));
 }
